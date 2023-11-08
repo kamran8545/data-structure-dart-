@@ -4,7 +4,10 @@ import 'dart:math';
 void main(){
   
   var linkedList  = SingleLinkedList();
-  linkedList.generateSingleLinked(noOfNodes:5);
+  linkedList.generateSingleLinked(noOfNodes:2);
+  linkedList.traverseSingleLinked();
+//   linkedList.addNodeEnd(data: Random().nextInt(100));
+  linkedList.addNodeStart(data: Random().nextInt(100));
   linkedList.traverseSingleLinked();
   
 }  
@@ -30,8 +33,7 @@ class SingleLinkedList{
       }
     }
   }
-
-  /// This method will traverse Single Linked List
+  
   void traverseSingleLinked(){
     SingleLinkedList? headNode = link;
     if(headNode == null){
@@ -42,6 +44,37 @@ class SingleLinkedList{
         headNode = headNode.link;
       }
       print('Current Node Data => ${headNode.data}');
+    }
+  }
+  
+  ///Time complexity of this method in 0(1)
+  ///Time complexity of array will be 0(n) because we have shift all elements of arrays
+  bool addNodeStart({required int data}){
+    if(link == null){
+      link = SingleLinkedList(data: data);
+    }else{
+      SingleLinkedList? temp = link;
+      link = SingleLinkedList(data: data);
+      link!.link = temp;
+    }
+    return true;
+  }
+  
+  
+  ///Time complexity of this method in 0(n) because we are traversing to the end of linked list
+  ///If we do not traverse and store the last node some then add the element at the end then Time Complexity will be 0(1)
+  ///For arrays if array has some empty slots then Time complexity will 0(1)
+  ///and if arrays is full then Time compexity will be 0(n) because we have to create new array copy all the elements and add new element
+  bool addNodeEnd({required int data}){
+    SingleLinkedList? headNode = link;
+    if(headNode == null){
+      return false;
+    }else{
+      while(headNode!.link != null){
+        headNode = headNode.link;
+      }
+      headNode.link = SingleLinkedList(data:  data,);
+      return true;
     }
   }
   
