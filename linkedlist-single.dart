@@ -4,10 +4,12 @@ import 'dart:math';
 void main(){
   
   var linkedList  = SingleLinkedList();
-  linkedList.generateSingleLinked(noOfNodes:0);
+  linkedList.generateSingleLinked(noOfNodes:5);
   linkedList.traverseSingleLinked();
-  linkedList.addNodeEnd(data: Random().nextInt(100));
+  print('\n');
+//   linkedList.addNodeEnd(data: Random().nextInt(100));
 //   linkedList.addNodeStart(data: Random().nextInt(100));
+  linkedList.addNodeAt(position:3, data: Random().nextInt(100));
   linkedList.traverseSingleLinked();
   
 }  
@@ -76,6 +78,22 @@ class SingleLinkedList{
     }
   }
   
-  
+  /// Time complexity of this method is O(n) because will have to traverse n to to add node at particular position
+  void addNodeAt({required int position, required int data}){
+    SingleLinkedList? headNode = link;
+    if(headNode == null){
+      link = SingleLinkedList(data: data);
+    }else if(position <= 1){
+      link = SingleLinkedList(data: data, link: headNode);
+    }else{
+      position--;
+      while(position > 1 && headNode != null && headNode.link != null){
+        headNode = headNode.link;
+        position--;
+      }
+      SingleLinkedList? suffixNode = headNode!.link;
+      headNode.link = SingleLinkedList(data: data, link: suffixNode);
+    }
+  }
   
 }
