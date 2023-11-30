@@ -80,13 +80,19 @@ class SingleLinkedList{
       headNode.node = SingleLinkedList(data: data, link: suffixNode);
     }
   }
-  
+
+  /// Time complexity of this function is O(1) because there only one statment needed to delete first node
+  /// Time complexity of deleting first element of an array is O(n) because when first element is deleted
+  /// we have to shift all the remaining element of array to left.
   void deleteFirstNode(){
     if(node != null){
       node = node!.node; 
     }
   }
 
+  /// Hence loop will run n-1 times and 1 is constant so the complexity will be O(n)
+  /// Time complexity of array for deleting last element is O(1) because we do not need
+  /// to traverse array in order to delete last element
   void deleteLastNode(){
     SingleLinkedList? headNode = node;
     if(headNode == null){
@@ -94,12 +100,10 @@ class SingleLinkedList{
     }else if(headNode.node == null){
       node = null;
     }else {
-      SingleLinkedList? secondLastNode;
-      while(headNode!.node != null){
-        secondLastNode = headNode;
+      while(headNode!.node!.node != null){
         headNode = headNode.node;
       }
-      secondLastNode!.node = null;
+      headNode.node = null;
     }
   }
 
