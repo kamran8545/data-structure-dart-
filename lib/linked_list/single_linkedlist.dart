@@ -107,4 +107,56 @@ class SingleLinkedList{
     }
   }
 
+
+  void deleteAt({required int position}){
+    SingleLinkedList? headNode = node;
+    if(headNode == null){
+      return;
+    }else if(position == 1){
+      node = node!.node;
+    }else if(position > 1){
+      SingleLinkedList? prefixNode;
+      while(position > 1 && headNode!.node != null){
+        prefixNode = headNode;
+        headNode = headNode.node;
+        position--;
+      }
+      prefixNode!.node = headNode!.node;
+    }
+  }
+
+  void clear(){
+    /// Method 1
+    // node = null;
+
+    /// Method 2
+    if(node == null){
+      return;
+    }else{
+      while(node!.node != null){
+        SingleLinkedList? temp = node!.node;
+        node = null;
+        node = temp;
+      }
+      node = null;
+    }
+
+
+    /// Method 3
+    // _clearLinkedListUsingRecursion();
+  }
+
+  /// Purpose of this method is to traverse each node and delete it
+  /// in other programing languages like C user has to traverse to each node
+  /// and free up the memory
+  void _clearLinkedListUsingRecursion(){
+    if(node == null){
+      return;
+    }
+    SingleLinkedList? temp = node!.node;
+    node = null;
+    node = temp;
+    temp = null;
+    _clearLinkedListUsingRecursion();
+  }
 }
