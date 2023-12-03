@@ -6,7 +6,7 @@ import 'package:data_structure/linked_list/single_linkedlist.dart';
 
 void main(List<String> arguments) {
   var linkedList  = SingleLinkedList();
-  linkedList.generateSingleLinked(noOfNodes:51);
+  linkedList.generateSingleLinked(noOfNodes:6);
   linkedList.traverseSingleLinked();
   print('\n========== Result ==========\n');
 //   linkedList.addNodeEnd(data: Random().nextInt(100));
@@ -14,6 +14,7 @@ void main(List<String> arguments) {
 //   linkedList.addNodeAt(position:3, data: Random().nextInt(100));
 //   linkedList.deleteFirstNode();
 //   linkedList.deleteAt(position: 2);
-  linkedList.clear();
+//   linkedList.clear();
+  linkedList.reverse();
   linkedList.traverseSingleLinked();
 }

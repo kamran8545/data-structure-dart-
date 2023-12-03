@@ -159,4 +159,18 @@ class SingleLinkedList{
     temp = null;
     _clearLinkedListUsingRecursion();
   }
+
+  void reverse(){
+    if(node != null && node!.node != null){
+      SingleLinkedList? headNode = node, nextNode, preNode;
+      while(headNode != null){
+        nextNode = headNode.node;
+        // headNode.node = preNode;
+        preNode = headNode;
+        headNode = nextNode;
+      }
+      headNode = preNode;
+      node = headNode;
+    }
+  }
 }
